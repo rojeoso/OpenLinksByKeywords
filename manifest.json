@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Open Links by Keywords",
+  "version": "1.0",
+  "description": "Search and open links by keywords with AND/OR logic",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

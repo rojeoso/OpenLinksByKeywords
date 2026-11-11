@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Height Test</title>
+  <link rel="stylesheet" href="popup.css">
+  <style>
+    .debug { border: 2px solid red; }
+    .height-info {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: yellow;
+      padding: 10px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="height-info">
+    Body: <span id="bodyHeight"></span><br>
+    Container: <span id="containerHeight"></span><br>
+    Results: <span id="resultsHeight"></span><br>
+    Links: <span id="linksHeight"></span><br>
+    Actions: <span id="actionsHeight"></span>
+  </div>
+
+  <div class="container">
+    <h1>Open Links by Keywords</h1>
+
+    <div id="historySection" class="history-section">
+      <div class="history-header">
+        <span class="history-title">Recent Searches:</span>
+        <button id="clearHistoryBtn" class="clear-history-btn">Clear</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="history-item">test search</div>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <label for="keywords">Enter keywords:</label>
+      <input type="text" id="keywords" placeholder='e.g., "github" AND "repository" OR "docs"'>
+      <button id="searchBtn">Search Links</button>
+    </div>
+
+    <div class="help-text">
+      Use AND/OR for logic. Use quotes for exact phrases.
+    </div>
+
+    <div id="resultsSection" class="results-section">
+      <div class="results-header">
+        <h2>Found <span id="linkCount">37</span> link(s)</h2>
+      </div>
+
+      <div class="select-controls">
+        <button id="selectAllBtn">Select All</button>
+        <button id="deselectAllBtn">Deselect All</button>
+      </div>
+
+      <div id="linksList" class="links-list">
+        <div class="link-item">
+          <div class="delete-icon">🗑️</div>
+          <div class="link-checkbox selected"></div>
+          <div class="link-text">https://recu.me/nataliy_/video/156754602/play</div>
+        </div>
+        <div class="link-item">
+          <div class="delete-icon">🗑️</div>
+          <div class="link-checkbox selected"></div>
+          <div class="link-text">https://recu.me/nataliy_/video/156754602/play</div>
+        </div>
+        <div class="link-item">
+          <div class="delete-icon">🗑️</div>
+          <div class="link-checkbox selected"></div>
+          <div class="link-text">https://recu.me/nataliy_/video/156754602/play</div>
+        </div>
+        <div class="link-item">
+          <div class="delete-icon">🗑️</div>
+          <div class="link-checkbox selected"></div>
+          <div class="link-text">https://recu.me/nataliy_/video/156754602/play</div>
+        </div>
+        <div class="link-item">
+          <div class="delete-icon">🗑️</div>
+          <div class="link-checkbox selected"></div>
+          <div class="link-text">https://recu.me/nataliy_/video/156754602/play</div>
+        </div>
+      </div>
+
+      <div class="actions-section" style="border: 3px solid red;">
+        <div class="open-as">
+          <label>Open as:</label>
+          <label class="radio-label">
+            <input type="radio" name="openAs" value="tabs" checked>
+            Tabs
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="openAs" value="windows">
+            Windows
+          </label>
+        </div>
+        <button id="openAllBtn" class="open-all-btn">Open Selected Links</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateHeights() {
+      document.getElementById('bodyHeight').textContent = document.body.offsetHeight + 'px';
+      document.getElementById('containerHeight').textContent = document.querySelector('.container').offsetHeight + 'px';
+      const results = document.getElementById('resultsSection');
+      document.getElementById('resultsHeight').textContent = results ? results.offsetHeight + 'px' : 'N/A';
+      const links = document.getElementById('linksList');
+      document.getElementById('linksHeight').textContent = links ? links.offsetHeight + 'px' : 'N/A';
+      const actions = document.querySelector('.actions-section');
+      document.getElementById('actionsHeight').textContent = actions ? actions.offsetHeight + 'px' : 'N/A';
+    }
+
+    window.addEventListener('load', updateHeights);
+    window.addEventListener('resize', updateHeights);
+  </script>
+</body>
+</html>
